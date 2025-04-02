@@ -1,0 +1,17 @@
+# Autoriser l'accès à tous les fichiers et répertoires
+<Directory /var/www/html>
+    AllowOverride All
+    Require all granted
+</Directory>
+
+# Activer la réécriture d'URL
+RewriteEngine On
+RewriteBase /
+
+# Si tu utilises un fichier index.php par défaut
+RewriteRule ^$ /index.php [L]
+
+# Si tu veux forcer l'indexation sur le fichier index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php [QSA,L]

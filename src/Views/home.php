@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -14,4 +14,11 @@
         </div>
     </div>
 </body>
-</html>
+</html> -->
+
+<?php require VIEWS . 'includes/header.inc.php'; ?>
+
+<h1><?= $title ?? 'Page sans titre' ?></h1>
+<p><?= $message ?? '' ?></p>
+
+<?php require VIEWS . 'includes/footer.inc.php'; ?>

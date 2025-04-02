@@ -1,30 +1,34 @@
 services:
   web:
-    image: php:8.1-apache
+    build: .
     container_name: mvc_apache
     restart: always
     ports:
       - "8080:80"
     volumes:
-      - ./public:/var/www/html
-      - ./includes:/var/www/html/includes
-      - ./src:/var/www/html/src
+      - .:/var/www/html
+      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./.htaccess:/var/www/html/.htaccess
     environment:
       - APACHE_RUN_USER=#1000
       - APACHE_RUN_GROUP=#1000
     depends_on:
       - db
+    env_file: 
+      - .env
 
   db:
     image: mysql:8.0
     container_name: mvc_mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mvc_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     ports:
       - "3306:3306"
     volumes:
       - ./database:/docker-entrypoint-initdb.d
+    env_file: 
+      - .env

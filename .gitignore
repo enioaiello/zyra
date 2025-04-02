@@ -3,6 +3,9 @@
 .vscode/
 *.swp
 
+# Fichiers de configuration
+.env
+
 # Système
 .DS_Store
 

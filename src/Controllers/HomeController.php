@@ -1,8 +1,14 @@
 <?php
 namespace App\Controllers;
 
-class HomeController {
+use App\Core\BaseController;
+
+class HomeController extends BaseController {
     public function index() {
-        require VIEWS . 'home.php';
+        $this->display('home', ['title' => 'Accueil', 'message' => 'Bienvenue sur mon site MVC !']);
+    }
+
+    public function about() {
+        $this->display('about', ['title' => 'À propos']);
     }
 }
