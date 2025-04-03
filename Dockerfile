@@ -17,9 +17,9 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Définition des permissions pour éviter les erreurs 403 et 500
-RUN chown -R ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /var/www/html \
+RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
-
+    
 # Installer les dépendances PHP avec Composer
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
 

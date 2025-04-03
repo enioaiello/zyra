@@ -2,12 +2,12 @@ services:
   web:
     build: .
     container_name: mvc_apache
-    restart: always
+    restart: unless-stopped
     ports:
       - "8080:80"
     volumes:
       - .:/var/www/html
-      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./.htaccess:/var/www/html/.htaccess
     environment:
       - APACHE_RUN_USER=#1000
@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:8.0
     container_name: mvc_mysql
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
       MYSQL_DATABASE: ${DB_NAME}
