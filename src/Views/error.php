@@ -1,3 +1,2 @@
-<h1>Page introuvable</h1>
-<p>La page ou la demande que vous recherchez n'existe pas.</p>
+<h1>Page non trouvée !</h1>
 <a href="/">Revenir à l'accueil</a>
