@@ -2,10 +2,20 @@
 RewriteEngine On
 RewriteBase /
 
-# Si tu utilises un fichier index.php par défaut
 RewriteRule ^$ /index.php [L]
 
-# Si tu veux forcer l'indexation sur le fichier index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php [QSA,L]
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si le fichier ou le répertoire existe, le servir directement
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Sinon, rediriger toutes les requêtes vers index.php
+    RewriteRule ^ index.php [L]
+</IfModule>

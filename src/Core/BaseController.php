@@ -11,8 +11,6 @@ class BaseController {
 
         extract($params); // Transforme le tableau en variables PHP
 
-        var_dump(__DIR__);
-
         // Inclure le fichier de header
         require __DIR__ . '../../../includes/header.inc.php';
 
